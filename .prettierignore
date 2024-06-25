@@ -1,0 +1,4 @@
+**/dist/
+**/auth-client/
+**/migrations/
+*.js

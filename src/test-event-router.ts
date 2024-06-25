@@ -1,69 +1,3 @@
-# Event Bus Extended
-
-Event Bus Extended is a flexible and efficient event handling library with middleware and post-event handling capabilities. It supports complex event keys and allows multiple listeners for each event, ensuring a well-organized and event-driven architecture for your projects.
-
-## Features
-
-- Supports complex event keys (e.g., tuples)
-- Allows multiple listeners for each event
-- Middleware support for pre-event processing
-- Post-event handling capabilities
-- Designed for flexibility and efficiency in large applications
-
-## Usage
-
-### Basic Usage
-
-Here is an example of how to use the `EventBus` class:
-
-```typescript
-import { ref } from 'vue';
-import { EventBus } from './index.js';
-
-// Simulated objects
-type User = { firstName: string; lastName: string };
-const myLocalUserRef = ref<User>();
-function anyFunctionAboutUser(user?: User) {
-  console.log(user);
-  return Promise.resolve(true);
-}
-
-// Define the types for events and their associated data.
-type EventTypes = {
-  userUpdated: (data: { firstName: string; lastName: string }) => void;
-  logout: () => void;
-};
-
-// Instantiate an event bus with defined event types.
-const eventBus = new EventBus<EventTypes>();
-
-// Subscribe to 'userUpdated' event to update local user reference.
-eventBus.on('userUpdated', (data) => {
-  myLocalUserRef.value = data; 
-});
-
-// Subscribe to 'userUpdated' event to perform any function related to user data.
-eventBus.on('userUpdated', anyFunctionAboutUser);
-
-// Subscribe to 'logout' event to log processes after user logs out.
-eventBus.on('logout', () => {
-  console.log('Run processes after log out'); 
-});
-
-// Trigger 'logout' event when the user logs out.
-eventBus.emit('logout');
-
-// Trigger 'userUpdated' event with specific data when user information is updated.
-eventBus.emit('userUpdated', {
-  payload: { firstName: 'Manar', lastName: 'Abdulkerim' }
-});
-```
-
-### Advanced Usage with Event Router
-
-You can also use the `useEventRouter` function for more advanced scenarios:
-
-```typescript
 import { useEventRouter } from './index.js';
 // Simulated server-side function to check if a username is available.
 function checkUserName(user: AuthInput): Promise<AuthResult> {
@@ -165,9 +99,3 @@ await register({
   password: 'Free Palestine',
   password2: 'Free Palestine'
 });
-
-```
-
-## License
-
-This project is licensed under the MIT License.
