@@ -1,11 +1,11 @@
 {
   "name": "@ugursahinkaya/event-manager",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "description": "A flexible and efficient event handling library with middleware and post-event handling capabilities.",
   "author": "Uğur Şahinkaya <ugur@sahinkaya.xyz>",
   "contributors": [
@@ -22,7 +22,9 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "node": "./dist/index.cjs",
+      "default": "./dist/index.js",
+      "umd": "./dist/index.umd.js"
     }
   },
   "main": "./dist/index.js",
@@ -42,11 +44,18 @@
   "packageManager": "pnpm@9.4.0",
   "scripts": {
     "format": "prettier --write .",
+    "dev": "tsx watch -r dotenv-expand/config src/",
     "lint": "eslint  --fix",
-    "build": "rm -rf ./dist/* && tsc -p tsconfig.build.json"
+    "build": "rollup -c"
   },
   "devDependencies": {
-    "prettier": "^3.3.2"
+    "@rollup/plugin-replace": "^5.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "prettier": "^3.3.2",
+    "rollup": "^4.18.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "5.5.2"
   },
   "engines": {
     "node": "18"
