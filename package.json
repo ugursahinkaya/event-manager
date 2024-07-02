@@ -5,10 +5,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "license": [
-    "GPL-3.0-only",
-    "Commercial"
-  ],
+  "license": "GPL-3.0-only",
   "description": "A flexible and efficient event handling library with middleware and post-event handling capabilities.",
   "author": "Uğur Şahinkaya <ugur@sahinkaya.xyz>",
   "contributors": [
